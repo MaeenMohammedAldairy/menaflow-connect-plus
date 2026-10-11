@@ -29,6 +29,13 @@
       "when": 1791682641114,
       "tag": "0003_whatsapp_pairing_code",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791700000000,
+      "tag": "0004_whatsapp_settings",
+      "breakpoints": true
     }
   ]
 }

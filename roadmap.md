@@ -1,0 +1,9 @@
+- [x] Import all original pages and preserve existing integrations.
+- [x] Enable Lovable Cloud and create the database schema (clients, users, roles, permissions, connections, conversations, messages, knowledge, products, images, inventory, orders, contacts) with per-client isolation.
+- [ ] Wire WhatsApp channel through Evolution API: QR pairing, connection status, connect/disconnect/reconnect.
+- [ ] Wire Facebook and Instagram through Meta OAuth with webhook endpoints for messages and events.
+- [ ] Connect the connect/manage pages to real connection records and show clear errors.
+- [ ] Correct shared and page-specific responsive layouts.
+- [ ] Test every route at all ten requested widths and landscape sizes.
+- [ ] Verify navigation, filters, forms, and preview dialog.
+- [ ] Check authenticated saved settings: requires access to original account.

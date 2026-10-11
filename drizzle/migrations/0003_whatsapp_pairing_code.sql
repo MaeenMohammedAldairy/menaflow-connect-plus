@@ -1,0 +1,1 @@
+alter table public.platform_connections add column if not exists pairing_code text, add column if not exists pairing_phone text;

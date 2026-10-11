@@ -10,33 +10,337 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ChatsRouteImport } from './routes/chats'
+import { Route as ConnectAccountsRouteImport } from './routes/connect-accounts'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as OrdersRouteImport } from './routes/orders'
+import { Route as PostsRouteImport } from './routes/posts'
+import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as ReviewRouteImport } from './routes/review'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as SourcesRouteImport } from './routes/sources'
+import { Route as ChatsIdRouteImport } from './routes/chats_.$id'
+import { Route as ConnectFacebookRouteImport } from './routes/connect.facebook'
+import { Route as ConnectInstagramRouteImport } from './routes/connect.instagram'
+import { Route as ConnectWhatsappRouteImport } from './routes/connect.whatsapp'
+import { Route as ManagePlatformRouteImport } from './routes/manage.$platform'
+import { Route as OrdersIdRouteImport } from './routes/orders_.$id'
+import { Route as PostsIdRouteImport } from './routes/posts_.$id'
+import { Route as ProductsIdRouteImport } from './routes/products_.$id'
+import { Route as ApiPublicEvolutionWebhookRouteImport } from './routes/api/public/evolution/webhook'
+import { Route as ApiPublicMetaCallbackRouteImport } from './routes/api/public/meta/callback'
+import { Route as ApiPublicMetaWebhookRouteImport } from './routes/api/public/meta/webhook'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatsRoute = ChatsRouteImport.update({
+  id: '/chats',
+  path: '/chats',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectAccountsRoute = ConnectAccountsRouteImport.update({
+  id: '/connect-accounts',
+  path: '/connect-accounts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsRoute = PostsRouteImport.update({
+  id: '/posts',
+  path: '/posts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsRoute = ProductsRouteImport.update({
+  id: '/products',
+  path: '/products',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReviewRoute = ReviewRouteImport.update({
+  id: '/review',
+  path: '/review',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SourcesRoute = SourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatsIdRoute = ChatsIdRouteImport.update({
+  id: '/chats_/$id',
+  path: '/chats/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectFacebookRoute = ConnectFacebookRouteImport.update({
+  id: '/connect/facebook',
+  path: '/connect/facebook',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectInstagramRoute = ConnectInstagramRouteImport.update({
+  id: '/connect/instagram',
+  path: '/connect/instagram',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectWhatsappRoute = ConnectWhatsappRouteImport.update({
+  id: '/connect/whatsapp',
+  path: '/connect/whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManagePlatformRoute = ManagePlatformRouteImport.update({
+  id: '/manage/$platform',
+  path: '/manage/$platform',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersIdRoute = OrdersIdRouteImport.update({
+  id: '/orders_/$id',
+  path: '/orders/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PostsIdRoute = PostsIdRouteImport.update({
+  id: '/posts_/$id',
+  path: '/posts/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsIdRoute = ProductsIdRouteImport.update({
+  id: '/products_/$id',
+  path: '/products/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicEvolutionWebhookRoute =
+  ApiPublicEvolutionWebhookRouteImport.update({
+    id: '/api/public/evolution/webhook',
+    path: '/api/public/evolution/webhook',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ApiPublicMetaCallbackRoute = ApiPublicMetaCallbackRouteImport.update({
+  id: '/api/public/meta/callback',
+  path: '/api/public/meta/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicMetaWebhookRoute = ApiPublicMetaWebhookRouteImport.update({
+  id: '/api/public/meta/webhook',
+  path: '/api/public/meta/webhook',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/chats': typeof ChatsRoute
+  '/connect-accounts': typeof ConnectAccountsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/posts': typeof PostsRoute
+  '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/sources': typeof SourcesRoute
+  '/chats/$id': typeof ChatsIdRoute
+  '/connect/facebook': typeof ConnectFacebookRoute
+  '/connect/instagram': typeof ConnectInstagramRoute
+  '/connect/whatsapp': typeof ConnectWhatsappRoute
+  '/manage/$platform': typeof ManagePlatformRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/posts/$id': typeof PostsIdRoute
+  '/products/$id': typeof ProductsIdRoute
+  '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
+  '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/chats': typeof ChatsRoute
+  '/connect-accounts': typeof ConnectAccountsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/posts': typeof PostsRoute
+  '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/sources': typeof SourcesRoute
+  '/chats/$id': typeof ChatsIdRoute
+  '/connect/facebook': typeof ConnectFacebookRoute
+  '/connect/instagram': typeof ConnectInstagramRoute
+  '/connect/whatsapp': typeof ConnectWhatsappRoute
+  '/manage/$platform': typeof ManagePlatformRoute
+  '/orders/$id': typeof OrdersIdRoute
+  '/posts/$id': typeof PostsIdRoute
+  '/products/$id': typeof ProductsIdRoute
+  '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
+  '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/chats': typeof ChatsRoute
+  '/connect-accounts': typeof ConnectAccountsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/orders': typeof OrdersRoute
+  '/posts': typeof PostsRoute
+  '/products': typeof ProductsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/review': typeof ReviewRoute
+  '/settings': typeof SettingsRoute
+  '/signup': typeof SignupRoute
+  '/sources': typeof SourcesRoute
+  '/chats_/$id': typeof ChatsIdRoute
+  '/connect/facebook': typeof ConnectFacebookRoute
+  '/connect/instagram': typeof ConnectInstagramRoute
+  '/connect/whatsapp': typeof ConnectWhatsappRoute
+  '/manage/$platform': typeof ManagePlatformRoute
+  '/orders_/$id': typeof OrdersIdRoute
+  '/posts_/$id': typeof PostsIdRoute
+  '/products_/$id': typeof ProductsIdRoute
+  '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
+  '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
+  '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/chats'
+    | '/connect-accounts'
+    | '/onboarding'
+    | '/orders'
+    | '/posts'
+    | '/products'
+    | '/reset-password'
+    | '/review'
+    | '/settings'
+    | '/signup'
+    | '/sources'
+    | '/chats/$id'
+    | '/connect/facebook'
+    | '/connect/instagram'
+    | '/connect/whatsapp'
+    | '/manage/$platform'
+    | '/orders/$id'
+    | '/posts/$id'
+    | '/products/$id'
+    | '/api/public/evolution/webhook'
+    | '/api/public/meta/callback'
+    | '/api/public/meta/webhook'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/chats'
+    | '/connect-accounts'
+    | '/onboarding'
+    | '/orders'
+    | '/posts'
+    | '/products'
+    | '/reset-password'
+    | '/review'
+    | '/settings'
+    | '/signup'
+    | '/sources'
+    | '/chats/$id'
+    | '/connect/facebook'
+    | '/connect/instagram'
+    | '/connect/whatsapp'
+    | '/manage/$platform'
+    | '/orders/$id'
+    | '/posts/$id'
+    | '/products/$id'
+    | '/api/public/evolution/webhook'
+    | '/api/public/meta/callback'
+    | '/api/public/meta/webhook'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/chats'
+    | '/connect-accounts'
+    | '/onboarding'
+    | '/orders'
+    | '/posts'
+    | '/products'
+    | '/reset-password'
+    | '/review'
+    | '/settings'
+    | '/signup'
+    | '/sources'
+    | '/chats_/$id'
+    | '/connect/facebook'
+    | '/connect/instagram'
+    | '/connect/whatsapp'
+    | '/manage/$platform'
+    | '/orders_/$id'
+    | '/posts_/$id'
+    | '/products_/$id'
+    | '/api/public/evolution/webhook'
+    | '/api/public/meta/callback'
+    | '/api/public/meta/webhook'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  ChatsRoute: typeof ChatsRoute
+  ConnectAccountsRoute: typeof ConnectAccountsRoute
+  OnboardingRoute: typeof OnboardingRoute
+  OrdersRoute: typeof OrdersRoute
+  PostsRoute: typeof PostsRoute
+  ProductsRoute: typeof ProductsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  ReviewRoute: typeof ReviewRoute
+  SettingsRoute: typeof SettingsRoute
+  SignupRoute: typeof SignupRoute
+  SourcesRoute: typeof SourcesRoute
+  ChatsIdRoute: typeof ChatsIdRoute
+  ConnectFacebookRoute: typeof ConnectFacebookRoute
+  ConnectInstagramRoute: typeof ConnectInstagramRoute
+  ConnectWhatsappRoute: typeof ConnectWhatsappRoute
+  ManagePlatformRoute: typeof ManagePlatformRoute
+  OrdersIdRoute: typeof OrdersIdRoute
+  PostsIdRoute: typeof PostsIdRoute
+  ProductsIdRoute: typeof ProductsIdRoute
+  ApiPublicEvolutionWebhookRoute: typeof ApiPublicEvolutionWebhookRoute
+  ApiPublicMetaCallbackRoute: typeof ApiPublicMetaCallbackRoute
+  ApiPublicMetaWebhookRoute: typeof ApiPublicMetaWebhookRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +352,195 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chats': {
+      id: '/chats'
+      path: '/chats'
+      fullPath: '/chats'
+      preLoaderRoute: typeof ChatsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect-accounts': {
+      id: '/connect-accounts'
+      path: '/connect-accounts'
+      fullPath: '/connect-accounts'
+      preLoaderRoute: typeof ConnectAccountsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts': {
+      id: '/posts'
+      path: '/posts'
+      fullPath: '/posts'
+      preLoaderRoute: typeof PostsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products': {
+      id: '/products'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof ProductsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/review': {
+      id: '/review'
+      path: '/review'
+      fullPath: '/review'
+      preLoaderRoute: typeof ReviewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sources': {
+      id: '/sources'
+      path: '/sources'
+      fullPath: '/sources'
+      preLoaderRoute: typeof SourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chats_/$id': {
+      id: '/chats_/$id'
+      path: '/chats/$id'
+      fullPath: '/chats/$id'
+      preLoaderRoute: typeof ChatsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect/facebook': {
+      id: '/connect/facebook'
+      path: '/connect/facebook'
+      fullPath: '/connect/facebook'
+      preLoaderRoute: typeof ConnectFacebookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect/instagram': {
+      id: '/connect/instagram'
+      path: '/connect/instagram'
+      fullPath: '/connect/instagram'
+      preLoaderRoute: typeof ConnectInstagramRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connect/whatsapp': {
+      id: '/connect/whatsapp'
+      path: '/connect/whatsapp'
+      fullPath: '/connect/whatsapp'
+      preLoaderRoute: typeof ConnectWhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manage/$platform': {
+      id: '/manage/$platform'
+      path: '/manage/$platform'
+      fullPath: '/manage/$platform'
+      preLoaderRoute: typeof ManagePlatformRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders_/$id': {
+      id: '/orders_/$id'
+      path: '/orders/$id'
+      fullPath: '/orders/$id'
+      preLoaderRoute: typeof OrdersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/posts_/$id': {
+      id: '/posts_/$id'
+      path: '/posts/$id'
+      fullPath: '/posts/$id'
+      preLoaderRoute: typeof PostsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products_/$id': {
+      id: '/products_/$id'
+      path: '/products/$id'
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof ProductsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/evolution/webhook': {
+      id: '/api/public/evolution/webhook'
+      path: '/api/public/evolution/webhook'
+      fullPath: '/api/public/evolution/webhook'
+      preLoaderRoute: typeof ApiPublicEvolutionWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/meta/callback': {
+      id: '/api/public/meta/callback'
+      path: '/api/public/meta/callback'
+      fullPath: '/api/public/meta/callback'
+      preLoaderRoute: typeof ApiPublicMetaCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/meta/webhook': {
+      id: '/api/public/meta/webhook'
+      path: '/api/public/meta/webhook'
+      fullPath: '/api/public/meta/webhook'
+      preLoaderRoute: typeof ApiPublicMetaWebhookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  ChatsRoute: ChatsRoute,
+  ConnectAccountsRoute: ConnectAccountsRoute,
+  OnboardingRoute: OnboardingRoute,
+  OrdersRoute: OrdersRoute,
+  PostsRoute: PostsRoute,
+  ProductsRoute: ProductsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  ReviewRoute: ReviewRoute,
+  SettingsRoute: SettingsRoute,
+  SignupRoute: SignupRoute,
+  SourcesRoute: SourcesRoute,
+  ChatsIdRoute: ChatsIdRoute,
+  ConnectFacebookRoute: ConnectFacebookRoute,
+  ConnectInstagramRoute: ConnectInstagramRoute,
+  ConnectWhatsappRoute: ConnectWhatsappRoute,
+  ManagePlatformRoute: ManagePlatformRoute,
+  OrdersIdRoute: OrdersIdRoute,
+  PostsIdRoute: PostsIdRoute,
+  ProductsIdRoute: ProductsIdRoute,
+  ApiPublicEvolutionWebhookRoute: ApiPublicEvolutionWebhookRoute,
+  ApiPublicMetaCallbackRoute: ApiPublicMetaCallbackRoute,
+  ApiPublicMetaWebhookRoute: ApiPublicMetaWebhookRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -30,6 +30,7 @@ import { Route as ManagePlatformRouteImport } from './routes/manage.$platform'
 import { Route as OrdersIdRouteImport } from './routes/orders_.$id'
 import { Route as PostsIdRouteImport } from './routes/posts_.$id'
 import { Route as ProductsIdRouteImport } from './routes/products_.$id'
+import { Route as SettingsWhatsappRouteImport } from './routes/settings_.whatsapp'
 import { Route as ApiPublicEvolutionWebhookRouteImport } from './routes/api/public/evolution/webhook'
 import { Route as ApiPublicMetaCallbackRouteImport } from './routes/api/public/meta/callback'
 import { Route as ApiPublicMetaWebhookRouteImport } from './routes/api/public/meta/webhook'
@@ -139,6 +140,11 @@ const ProductsIdRoute = ProductsIdRouteImport.update({
   path: '/products/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SettingsWhatsappRoute = SettingsWhatsappRouteImport.update({
+  id: '/settings_/whatsapp',
+  path: '/settings/whatsapp',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicEvolutionWebhookRoute =
   ApiPublicEvolutionWebhookRouteImport.update({
     id: '/api/public/evolution/webhook',
@@ -178,6 +184,7 @@ export interface FileRoutesByFullPath {
   '/orders/$id': typeof OrdersIdRoute
   '/posts/$id': typeof PostsIdRoute
   '/products/$id': typeof ProductsIdRoute
+  '/settings/whatsapp': typeof SettingsWhatsappRoute
   '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
   '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/orders/$id': typeof OrdersIdRoute
   '/posts/$id': typeof PostsIdRoute
   '/products/$id': typeof ProductsIdRoute
+  '/settings/whatsapp': typeof SettingsWhatsappRoute
   '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
   '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
@@ -231,6 +239,7 @@ export interface FileRoutesById {
   '/orders_/$id': typeof OrdersIdRoute
   '/posts_/$id': typeof PostsIdRoute
   '/products_/$id': typeof ProductsIdRoute
+  '/settings_/whatsapp': typeof SettingsWhatsappRoute
   '/api/public/evolution/webhook': typeof ApiPublicEvolutionWebhookRoute
   '/api/public/meta/callback': typeof ApiPublicMetaCallbackRoute
   '/api/public/meta/webhook': typeof ApiPublicMetaWebhookRoute
@@ -259,6 +268,7 @@ export interface FileRouteTypes {
     | '/orders/$id'
     | '/posts/$id'
     | '/products/$id'
+    | '/settings/whatsapp'
     | '/api/public/evolution/webhook'
     | '/api/public/meta/callback'
     | '/api/public/meta/webhook'
@@ -285,6 +295,7 @@ export interface FileRouteTypes {
     | '/orders/$id'
     | '/posts/$id'
     | '/products/$id'
+    | '/settings/whatsapp'
     | '/api/public/evolution/webhook'
     | '/api/public/meta/callback'
     | '/api/public/meta/webhook'
@@ -311,6 +322,7 @@ export interface FileRouteTypes {
     | '/orders_/$id'
     | '/posts_/$id'
     | '/products_/$id'
+    | '/settings_/whatsapp'
     | '/api/public/evolution/webhook'
     | '/api/public/meta/callback'
     | '/api/public/meta/webhook'
@@ -338,6 +350,7 @@ export interface RootRouteChildren {
   OrdersIdRoute: typeof OrdersIdRoute
   PostsIdRoute: typeof PostsIdRoute
   ProductsIdRoute: typeof ProductsIdRoute
+  SettingsWhatsappRoute: typeof SettingsWhatsappRoute
   ApiPublicEvolutionWebhookRoute: typeof ApiPublicEvolutionWebhookRoute
   ApiPublicMetaCallbackRoute: typeof ApiPublicMetaCallbackRoute
   ApiPublicMetaWebhookRoute: typeof ApiPublicMetaWebhookRoute
@@ -492,6 +505,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/settings_/whatsapp': {
+      id: '/settings_/whatsapp'
+      path: '/settings/whatsapp'
+      fullPath: '/settings/whatsapp'
+      preLoaderRoute: typeof SettingsWhatsappRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/evolution/webhook': {
       id: '/api/public/evolution/webhook'
       path: '/api/public/evolution/webhook'
@@ -538,6 +558,7 @@ const rootRouteChildren: RootRouteChildren = {
   OrdersIdRoute: OrdersIdRoute,
   PostsIdRoute: PostsIdRoute,
   ProductsIdRoute: ProductsIdRoute,
+  SettingsWhatsappRoute: SettingsWhatsappRoute,
   ApiPublicEvolutionWebhookRoute: ApiPublicEvolutionWebhookRoute,
   ApiPublicMetaCallbackRoute: ApiPublicMetaCallbackRoute,
   ApiPublicMetaWebhookRoute: ApiPublicMetaWebhookRoute,

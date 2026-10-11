@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react';
 import { useServerFn } from '@tanstack/react-start';
+import { useNavigate } from '@tanstack/react-router';
 import { CircleAlert, CircleCheck, Copy, Loader2, RefreshCw, Smartphone, Unplug } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAccount } from '@/components/account-provider';
@@ -32,11 +33,18 @@ export function WhatsappPairing() {
   const [now, setNow] = useState(() => Date.now());
   const [copied, setCopied] = useState(false);
   const wasConnected = useRef(false);
+  const wasPending = useRef(false);
+  const navigate = useNavigate();
 
   const sync = useCallback(async () => {
     const next = await refresh();
     setConn(next ?? null);
-    if (next?.status === 'connected' && !wasConnected.current) void refreshConnections();
+    if (next?.status === 'connected' && !wasConnected.current) {
+      void refreshConnections();
+      // Pairing just completed: move to WhatsApp settings (session stays in the same SPA).
+      if (wasPending.current) void navigate({ to: '/settings/whatsapp', search: { connected: true } });
+    }
+    wasPending.current = next?.status === 'pending';
     wasConnected.current = next?.status === 'connected';
     return next;
   }, [refresh, refreshConnections]);
@@ -78,7 +86,7 @@ export function WhatsappPairing() {
     const digits = local.replace(/\D/g, '').replace(/^0+/, '');
     if (digits.length < 6 || digits.length > 12) { setError('أدخل رقم هاتف صحيحًا بدون رمز الدولة.'); return; }
     setBusy('request'); setError(''); setCopied(false);
-    try { const next = await request({ data: { origin: window.location.origin, phone: `${country}${digits}` } }); setConn(next); setNow(Date.now()); }
+    try { const next = await request({ data: { origin: window.location.origin, phone: `${country}${digits}` } }); setConn(next); wasPending.current = next?.status === 'pending'; setNow(Date.now()); }
     catch (err) { setError((err as Error).message || 'تعذر طلب رمز الربط.'); await sync().catch(() => null); }
     finally { setBusy(''); }
   }
@@ -145,6 +153,7 @@ export function WhatsappPairing() {
         {!connected && !(pending && !expired) && <Button variant="dashboard" onClick={() => submit()} disabled={busy !== ''}>{busy === 'request' ? <Loader2 className="animate-spin" /> : null}{expired || status === 'error' ? 'إعادة المحاولة' : 'طلب رمز الربط'}</Button>}
         {pending && !expired && <Button variant="outline" onClick={check} disabled={busy !== ''}>{busy === 'check' ? <Loader2 className="animate-spin" /> : <RefreshCw />}تحقق الآن</Button>}
         {pending && !expired && <Button variant="ghost" onClick={() => submit()} disabled={busy !== ''}>طلب رمز جديد</Button>}
+        {connected && <Button variant="dashboard" onClick={() => navigate({ to: '/settings/whatsapp' })}>إعدادات واتساب</Button>}
         {connected && <Button variant="outline" onClick={check} disabled={busy !== ''}>{busy === 'check' ? <Loader2 className="animate-spin" /> : <RefreshCw />}تحديث الحالة</Button>}
         {conn && status !== 'disconnected' && <Button variant="outline" onClick={unlink} disabled={busy !== ''}>{busy === 'disconnect' ? <Loader2 className="animate-spin" /> : <Unplug />}فصل الحساب</Button>}
       </div>

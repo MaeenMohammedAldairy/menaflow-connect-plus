@@ -303,7 +303,10 @@ export type Database = {
       }
       conversations: {
         Row: {
+          ai_paused: boolean
+          ai_reply_count: number
           assigned_to: string | null
+          away_sent_at: string | null
           client_id: string
           contact_id: string | null
           created_at: string
@@ -319,7 +322,10 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          ai_paused?: boolean
+          ai_reply_count?: number
           assigned_to?: string | null
+          away_sent_at?: string | null
           client_id: string
           contact_id?: string | null
           created_at?: string
@@ -335,7 +341,10 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          ai_paused?: boolean
+          ai_reply_count?: number
           assigned_to?: string | null
+          away_sent_at?: string | null
           client_id?: string
           contact_id?: string | null
           created_at?: string
@@ -1180,6 +1189,126 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      client_notifications: {
+        Row: {
+          id: string
+          client_id: string
+          platform: Database["public"]["Enums"]["platform_name"]
+          kind: string
+          title: string
+          body: string | null
+          read_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          client_id: string
+          platform: Database["public"]["Enums"]["platform_name"]
+          kind: string
+          title: string
+          body?: string | null
+          read_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          client_id?: string
+          platform?: Database["public"]["Enums"]["platform_name"]
+          kind?: string
+          title?: string
+          body?: string | null
+          read_at?: string | null
+          created_at?: string
+        }
+        Relationships: []
+      }
+      whatsapp_settings: {
+        Row: {
+          client_id: string
+          ai_enabled: boolean
+          ai_tone: string
+          ai_language: string
+          ai_instructions: string
+          ai_reply_mode: string
+          handoff_keywords: string[]
+          handoff_message: string
+          max_ai_replies: number
+          hours_enabled: boolean
+          timezone: string
+          business_hours: Json
+          outside_hours_message: string
+          welcome_enabled: boolean
+          welcome_message: string
+          unavailable_message: string
+          closing_message: string
+          ignore_groups: boolean
+          read_messages: boolean
+          reject_calls: boolean
+          notify_new_message: boolean
+          notify_disconnect: boolean
+          notify_errors: boolean
+          updated_by: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          client_id: string
+          ai_enabled?: boolean
+          ai_tone?: string
+          ai_language?: string
+          ai_instructions?: string
+          ai_reply_mode?: string
+          handoff_keywords?: string[]
+          handoff_message?: string
+          max_ai_replies?: number
+          hours_enabled?: boolean
+          timezone?: string
+          business_hours?: Json
+          outside_hours_message?: string
+          welcome_enabled?: boolean
+          welcome_message?: string
+          unavailable_message?: string
+          closing_message?: string
+          ignore_groups?: boolean
+          read_messages?: boolean
+          reject_calls?: boolean
+          notify_new_message?: boolean
+          notify_disconnect?: boolean
+          notify_errors?: boolean
+          updated_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Update: {
+          client_id?: string
+          ai_enabled?: boolean
+          ai_tone?: string
+          ai_language?: string
+          ai_instructions?: string
+          ai_reply_mode?: string
+          handoff_keywords?: string[]
+          handoff_message?: string
+          max_ai_replies?: number
+          hours_enabled?: boolean
+          timezone?: string
+          business_hours?: Json
+          outside_hours_message?: string
+          welcome_enabled?: boolean
+          welcome_message?: string
+          unavailable_message?: string
+          closing_message?: string
+          ignore_groups?: boolean
+          read_messages?: boolean
+          reject_calls?: boolean
+          notify_new_message?: boolean
+          notify_disconnect?: boolean
+          notify_errors?: boolean
+          updated_by?: string | null
+          created_at?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
     }
     Views: {

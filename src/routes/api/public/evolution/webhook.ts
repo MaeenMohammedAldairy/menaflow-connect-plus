@@ -25,7 +25,11 @@ export const Route = createFileRoute('/api/public/evolution/webhook')({
             const state = body.data?.state;
             const phone = typeof body.data?.wuid === 'string' ? body.data.wuid.split('@')[0] : undefined;
             if (state === 'open' && (await import('@/lib/channels.server').then(m => m.evolution(`/instance/connectionState/${conn.instance_name}`)).then(r => r?.instance?.state).catch(() => null)) === 'open') await supabaseAdmin.from('platform_connections').update({ status: 'connected', qr_code: null, pairing_code: null, error: null, verified_at: new Date().toISOString(), revoked_at: null, ...(phone ? { phone_number: phone, account_name: `+${phone}` } : {}) }).eq('id', conn.id);
-            else if (state === 'close') await supabaseAdmin.from('platform_connections').update({ status: 'disconnected', verified_at: null }).eq('id', conn.id);
+            else if (state === 'close') {
+              await supabaseAdmin.from('platform_connections').update({ status: 'disconnected', verified_at: null }).eq('id', conn.id);
+              const { notify } = await import('@/lib/whatsapp-bot.server');
+              await notify(conn.client_id, 'disconnected', 'انقطع اتصال واتساب', 'أعد الربط من إعدادات واتساب.');
+            }
           } else if (event === 'messages.upsert') {
             const items = Array.isArray(body.data) ? body.data : [body.data];
             for (const d of items) {
@@ -35,12 +39,18 @@ export const Route = createFileRoute('/api/public/evolution/webhook')({
               const text = msg.conversation ?? msg.extendedTextMessage?.text ?? msg.imageMessage?.caption ?? msg.videoMessage?.caption ?? null;
               const type = msg.imageMessage ? 'image' : msg.audioMessage ? 'audio' : msg.videoMessage ? 'video' : msg.documentMessage ? 'document' : 'text';
               const phone = jid.split('@')[0] ?? null;
-              await ingestMessage({ clientId: conn.client_id, platform: 'whatsapp', threadId: jid, externalId: d.key.id, name: d.key.fromMe ? null : d.pushName, phone, direction: d.key.fromMe ? 'outbound' : 'inbound', body: text, contentType: type, sentAt: new Date(Number(d.messageTimestamp ?? Date.now() / 1000) * 1000), payload: d });
+              const r = await ingestMessage({ clientId: conn.client_id, platform: 'whatsapp', threadId: jid, externalId: d.key.id, name: d.key.fromMe ? null : d.pushName, phone, direction: d.key.fromMe ? 'outbound' : 'inbound', body: text, contentType: type, sentAt: new Date(Number(d.messageTimestamp ?? Date.now() / 1000) * 1000), payload: d });
+              if (!d.key.fromMe && conn.instance_name) {
+                const { handleInbound, notify } = await import('@/lib/whatsapp-bot.server');
+                if (r.wasRead) await notify(conn.client_id, 'new_message', `رسالة جديدة من ${d.pushName || phone}`, text);
+                await handleInbound({ clientId: conn.client_id, instance: conn.instance_name, conversationId: r.conversationId, isNew: r.isNew, jid, text });
+              }
             }
           }
           await logEvent({ clientId: conn.client_id, platform: 'whatsapp', type: event || 'unknown', payload: body, status: 'processed' });
         } catch (e) {
           await logEvent({ clientId: conn.client_id, platform: 'whatsapp', type: event || 'unknown', payload: body, status: 'failed', error: (e as Error).message });
+          await import('@/lib/whatsapp-bot.server').then(m => m.notify(conn.client_id, 'error', 'خطأ في معالجة رسالة واتساب', (e as Error).message)).catch(() => null);
           return new Response('error', { status: 500 });
         }
         return new Response('ok');

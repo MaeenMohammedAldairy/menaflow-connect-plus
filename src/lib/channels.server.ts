@@ -62,7 +62,9 @@ export async function ingestMessage(m: { clientId: string; platform: Platform; t
     conversationId = data?.id;
   }
   if (!conversationId) throw new Error('conversation upsert failed');
+  const isNew = !existing; const wasRead = !existing || existing.unread_count === 0;
   await supabaseAdmin.from('messages').upsert({ client_id: m.clientId, conversation_id: conversationId, platform: m.platform, direction: m.direction, external_message_id: m.externalId, sender_type: m.direction === 'inbound' ? 'contact' : 'agent', content_type: m.contentType, body: m.body, media_url: m.mediaUrl ?? null, payload: m.payload as never, status: m.direction === 'inbound' ? 'delivered' : 'sent', sent_at: m.sentAt.toISOString() }, { onConflict: 'client_id,platform,external_message_id', ignoreDuplicates: true });
+  return { conversationId, isNew, wasRead };
 }
 
 export async function logEvent(e: { clientId?: string | null; platform: Platform; type: string; externalId?: string | null; payload: unknown; status: 'received' | 'processed' | 'failed' | 'ignored'; error?: string | null }) {
